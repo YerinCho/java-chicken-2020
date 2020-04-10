@@ -24,6 +24,8 @@ public class TableRepository {
     }
 
     public static void validateTableNumber(int number) {
-
+        if ((int) tables().stream().filter(table -> table.isNumber(number)).count() == 0) {
+            throw new IllegalArgumentException("존재하지 않는 테이블 번호입니다.");
+        }
     }
 }

@@ -1,7 +1,8 @@
 package domain;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderedMenus {
     private Map<Menu, OrderedMenu> orderedMenus = new HashMap<>();
@@ -18,9 +19,8 @@ public class OrderedMenus {
         return orderedMenus.containsKey(menu);
     }
 
-
-
     public Map<Menu, OrderedMenu> getOrderedMenu() {
         return Collections.unmodifiableMap(orderedMenus);
     }
+
 }
