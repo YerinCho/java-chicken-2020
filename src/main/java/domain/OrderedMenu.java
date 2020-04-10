@@ -26,12 +26,20 @@ public class OrderedMenu {
         }
     }
 
+    public boolean isChicken() {
+        return menu.isChicken();
+    }
+
+    public double calculatePrice() {
+        return menu.getPrice() * number;
+    }
+
     public boolean isContain(Menu menu) {
         return this.menu.equals(menu);
     }
 
     public void orderMore(int moreNumber) {
-        this.number+=moreNumber;
+        this.number += moreNumber;
     }
 
     public Menu getMenu() {

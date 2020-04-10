@@ -19,4 +19,9 @@ public class InputView {
         System.out.println("## 등록할 메뉴를 선택하세요.");
         return scanner.nextLine().trim();
     }
+
+    public static String inputPay() {
+        System.out.println("## 신용카드는 1번, 현금결제는 2번");
+        return scanner.nextLine().trim();
+    }
 }

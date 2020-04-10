@@ -1,7 +1,6 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,10 +34,18 @@ public class OrderedMenuTest {
 
     @Test
     @DisplayName("주문한 음식 확인")
-    void isContain(){
-        OrderedMenu orderedMenu = new OrderedMenu(MenuRepository.menus().get(1),1);
+    void isContain() {
+        OrderedMenu orderedMenu = new OrderedMenu(MenuRepository.menus().get(1), 1);
         assertThat(orderedMenu.isContain(MenuRepository.menus().get(1))).isTrue();
         assertThat(orderedMenu.isContain(MenuRepository.menus().get(2))).isFalse();
+    }
+
+    @Test
+    @DisplayName("가격 반환")
+    void calculatePrice() {
+        OrderedMenu orderedMenu = new OrderedMenu(MenuRepository.menus().get(1), 1);
+        orderedMenu.orderMore(4);
+        assertThat(orderedMenu.calculatePrice()).isEqualTo(5 * 16000);
     }
 
 }

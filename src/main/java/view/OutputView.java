@@ -9,6 +9,7 @@ public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String ORDERED_LINE = "└ ₩ ┘";
 
 
     public static void printMain(){
@@ -45,4 +46,14 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printPayInformation(int tableNumber) {
+        System.out.printf("## %d번 테이블의 결제를 진행합니다.\n", tableNumber);
+    }
+
+    public static void printPayMoney(double money) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.println((int) money + "원");
+    }
+
 }
