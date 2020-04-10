@@ -12,11 +12,15 @@ public class OutputView {
     private static final String ORDERED_LINE = "└ ₩ ┘";
 
 
-    public static void printMain(){
+    public static void printMain() {
         System.out.println("## 메인 화면");
         System.out.println("1 - 주문 등록");
         System.out.println("2 - 결제하기");
         System.out.println("3 - 프로그램 종료");
+    }
+
+    public static void printMainErrorMessage() {
+        System.out.println("메뉴입력이 유효하지 않습니다.");
     }
 
     public static void printTables(final List<Table> tables) {
@@ -56,4 +60,11 @@ public class OutputView {
         System.out.println((int) money + "원");
     }
 
+    public static void printTableNumberErrorMessage() {
+        System.out.println("테이블 번호 입력이 잘못되었습니다.");
+    }
+
+    public static void printError(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

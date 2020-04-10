@@ -7,12 +7,12 @@ import java.util.Map;
 public class OrderedMenus {
     private Map<Menu, OrderedMenu> orderedMenus = new HashMap<>();
 
-    void order(Menu menu, int number) {
-        if(isMenuContain(menu)){
+    public void order(Menu menu, int number) {
+        if (isMenuContain(menu)) {
             orderedMenus.get(menu).orderMore(number);
             return;
         }
-        orderedMenus.put(menu,new OrderedMenu(menu, number));
+        orderedMenus.put(menu, new OrderedMenu(menu, number));
     }
 
     boolean isMenuContain(Menu menu) {

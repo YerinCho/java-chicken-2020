@@ -20,6 +20,11 @@ public class InputView {
         return scanner.nextLine().trim();
     }
 
+    public static String inputNumberToBuyNumber() {
+        System.out.println("## 구매할 수량을 입력하세요.");
+        return scanner.nextLine().trim();
+    }
+
     public static String inputPay() {
         System.out.println("## 신용카드는 1번, 현금결제는 2번");
         return scanner.nextLine().trim();

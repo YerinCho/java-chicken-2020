@@ -21,4 +21,23 @@ public class MenuRepository {
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public static void validateMenuNumber(int number) {
+        if ((int) menus().stream().filter(menu -> menu.isNumber(number)).count() == 0) {
+            throw new IllegalArgumentException("존재하지 않는 메뉴 번호입니다.");
+        }
+    }
+
+    public static int changeMenuNumber(int input) {
+        if (input <= 6) {
+            return input - 1;
+        }
+        if (input == 21) {
+            return 6;
+        }
+        if (input == 22) {
+            return 7;
+        }
+        throw new IllegalArgumentException("메뉴번호 오류입니다.");
+    }
 }
