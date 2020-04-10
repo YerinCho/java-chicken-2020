@@ -32,4 +32,13 @@ public class OrderedMenuTest {
         orderedMenu.orderMore(4);
         assertThat(orderedMenu.getNumber()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("주문한 음식 확인")
+    void isContain(){
+        OrderedMenu orderedMenu = new OrderedMenu(MenuRepository.menus().get(1),1);
+        assertThat(orderedMenu.isContain(MenuRepository.menus().get(1))).isTrue();
+        assertThat(orderedMenu.isContain(MenuRepository.menus().get(2))).isFalse();
+    }
+
 }

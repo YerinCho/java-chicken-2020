@@ -1,17 +1,26 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class OrderedMenus {
-    private List<OrderedMenu> orderedMenu = new ArrayList<>();
+    private Map<Menu, OrderedMenu> orderedMenus = new HashMap<>();
 
-    OrderedMenus(){
+    void order(Menu menu, int number) {
+        if(isMenuContain(menu)){
+            orderedMenus.get(menu).orderMore(number);
+            return;
+        }
+        orderedMenus.put(menu,new OrderedMenu(menu, number));
     }
 
-    public List<OrderedMenu> getOrderedMenu() {
-        return Collections.unmodifiableList(orderedMenu);
+    boolean isMenuContain(Menu menu) {
+        return orderedMenus.containsKey(menu);
+    }
+
+
+
+    public Map<Menu, OrderedMenu> getOrderedMenu() {
+        return Collections.unmodifiableMap(orderedMenus);
     }
 }

@@ -26,6 +26,10 @@ public class OrderedMenu {
         }
     }
 
+    public boolean isContain(Menu menu) {
+        return this.menu.equals(menu);
+    }
+
     public void orderMore(int moreNumber) {
         this.number+=moreNumber;
     }
@@ -37,5 +41,4 @@ public class OrderedMenu {
     public int getNumber() {
         return number;
     }
-
 }
