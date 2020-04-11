@@ -34,12 +34,29 @@ public class Controller {
     }
 
     private static void pay() {
-        int tableNumber = selectTable();
-        OrderedMenus orderedMenus = tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber)));
-        OutputView.printPayInformation(tableNumber, orderedMenus);
-        PaymentMethod paymentMethod = PaymentMethod.getPaymentMethodByNumber(selectInputPaymentMethod());
-        double money = Payment.calculatePay(orderedMenus.getOrderedMenus(), paymentMethod);
-        OutputView.printPayMoney(money);
+        try {
+            int tableNumber = selectTable();
+            checkTableOrdered(TableRepository.changeTableNumber(tableNumber));
+            OrderedMenus orderedMenus = tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber)));
+            OutputView.printPayInformation(tableNumber, orderedMenus);
+            PaymentMethod paymentMethod = PaymentMethod.getPaymentMethodByNumber(selectInputPaymentMethod());
+            double money = Payment.calculatePay(orderedMenus.getOrderedMenus(), paymentMethod);
+            OutputView.printPayMoney(money);
+            clear(tableNumber, orderedMenus);
+        } catch (IllegalArgumentException e) {
+            OutputView.printPaymentMethodErrorMessage();
+        } catch (UnsupportedOperationException e) {
+            OutputView.printError(e);
+        }
+    }
+
+    private static void checkTableOrdered(int changeTableNumber) {
+        if (!isOrder.get(changeTableNumber)) {
+            throw new UnsupportedOperationException("주문이 이루어지지 않은 테이블입니다.");
+        }
+    }
+
+    private static void clear(int tableNumber, OrderedMenus orderedMenus) {
         orderedMenus.clearOrder();
         isOrder.set(TableRepository.changeTableNumber(tableNumber), false);
     }
@@ -91,7 +108,8 @@ public class Controller {
         OutputView.printMenus(menus);
         try {
             menuNumber = StringUtil.toInteger(InputView.inputMenuNumber());
-        } catch (NumberFormatException e) {
+            MenuRepository.validateMenuNumber(menuNumber);
+        } catch (Exception e) {
             OutputView.printError(e);
             menuNumber = selectMenu();
         }

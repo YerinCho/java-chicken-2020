@@ -9,7 +9,7 @@ public class MenuRepositoryTest {
 
     @Test
     @DisplayName("메뉴 입력이 유효한지 테스트")
-    void validateTableNumber() {
+    void validateMenuNumber() {
         assertThatThrownBy(() -> MenuRepository.validateMenuNumber(20))
                 .isInstanceOf(IllegalArgumentException.class);
     }

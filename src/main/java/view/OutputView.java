@@ -90,4 +90,8 @@ public class OutputView {
     public static void printError(final Exception e) {
         System.out.println(e.getMessage());
     }
+
+    public static void printPaymentMethodErrorMessage() {
+        System.out.println("잘못된 결제수단입니다.");
+    }
 }

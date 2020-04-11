@@ -34,16 +34,15 @@ public class OrderedMenu {
         return menu.getPrice() * number;
     }
 
+
+    //Todo TestCode
     public boolean isContain(Menu menu) {
         return this.menu.equals(menu);
     }
 
+    //Todo TestCode
     public void orderMore(int moreNumber) {
         this.number += moreNumber;
-    }
-
-    public Menu getMenu() {
-        return menu;
     }
 
     public int getNumber() {
