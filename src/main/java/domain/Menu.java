@@ -13,6 +13,10 @@ public class Menu {
         this.price = price;
     }
 
+    public boolean isNumber(int number) {
+        return this.number == number;
+    }
+
     public boolean isChicken() {
         return Category.CHICKEN.equals(category);
     }
@@ -21,12 +25,13 @@ public class Menu {
         return price;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
     }
 
-    public boolean isNumber(int number) {
-        return this.number == number;
-    }
 }

@@ -21,6 +21,7 @@ public class Controller {
             return true;
         }
         if (mainNumber == 2) {
+            pay();
             return true;
         }
         if (mainNumber == 3) {
@@ -28,6 +29,12 @@ public class Controller {
         }
         OutputView.printMainErrorMessage();
         return true;
+    }
+
+    private static void pay() {
+        int tableNumber = selectTable();
+        OutputView.printPayInformation(tableNumber, tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber))));
+
     }
 
     private static void buyMenu() {

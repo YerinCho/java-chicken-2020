@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class TableRepositoryTest {
+public class MenuRepositoryTest {
 
     @Test
-    @DisplayName("테이블 입력이 유효한지 테스트")
+    @DisplayName("메뉴 입력이 유효한지 테스트")
     void validateTableNumber() {
-        assertThatThrownBy(() -> TableRepository.validateTableNumber(10))
+        assertThatThrownBy(() -> MenuRepository.validateMenuNumber(20))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

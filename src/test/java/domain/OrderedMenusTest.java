@@ -18,7 +18,7 @@ public class OrderedMenusTest {
     @Test
     @DisplayName("주문된 메뉴 등록 확인")
     void order() {
-        assertThat(orderedMenus.getOrderedMenu().size()).isEqualTo(1);
+        assertThat(orderedMenus.getOrderedMenus().size()).isEqualTo(1);
     }
 
     @Test
@@ -32,6 +32,7 @@ public class OrderedMenusTest {
     @DisplayName("주문한 메뉴 또 주문시 수량만 추가")
     void orderMore() {
         orderedMenus.order(MenuRepository.menus().get(2), 1);
-        assertThat(orderedMenus.getOrderedMenu().size()).isEqualTo(1);
+        assertThat(orderedMenus.getOrderedMenus().size()).isEqualTo(1);
     }
 }
+

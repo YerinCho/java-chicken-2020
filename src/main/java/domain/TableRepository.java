@@ -38,7 +38,7 @@ public class TableRepository {
         if (input == 8) {
             return 5;
         }
-        throw new IllegalArgumentException("테이블번호 오류입니다.");
+        throw new IllegalArgumentException("테이블 번호 오류입니다.");
     }
 
     public static Map<Table, OrderedMenus> tableOrder() {

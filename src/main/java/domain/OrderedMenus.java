@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderedMenus {
+
     private Map<Menu, OrderedMenu> orderedMenus = new HashMap<>();
 
     public void order(Menu menu, int number) {
@@ -19,8 +20,7 @@ public class OrderedMenus {
         return orderedMenus.containsKey(menu);
     }
 
-    public Map<Menu, OrderedMenu> getOrderedMenu() {
+    public Map<Menu, OrderedMenu> getOrderedMenus() {
         return Collections.unmodifiableMap(orderedMenus);
     }
-
 }

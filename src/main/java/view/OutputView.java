@@ -1,9 +1,12 @@
 package view;
 
 import domain.Menu;
+import domain.OrderedMenu;
+import domain.OrderedMenus;
 import domain.Table;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
@@ -51,8 +54,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printPayInformation(int tableNumber) {
-        System.out.printf("## %d번 테이블의 결제를 진행합니다.\n", tableNumber);
+    public static void printPayInformation(int tablaNumber, OrderedMenus orderedMenus) {
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
+        OutputView.printOrderList(orderedMenus);
+        System.out.printf("## %d번 테이블의 결제를 진행합니다.\n", tablaNumber);
+    }
+
+    private static void printOrderList(OrderedMenus table) {
+        for (Map.Entry<Menu, OrderedMenu> orderedMenu : table.getOrderedMenus().entrySet()) {
+            System.out.println(orderedMenu.getKey().getName() + " " + orderedMenu.getValue().getNumber() + " " + orderedMenu.getKey().getPrice());
+        }
     }
 
     public static void printPayMoney(double money) {

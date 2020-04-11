@@ -23,14 +23,14 @@ public class PaymentTest {
         orderedMenus.order(MenuRepository.menus().get(2), 1);
         orderedMenus.order(MenuRepository.menus().get(2), 1);
         orderedMenus.order(MenuRepository.menus().get(7), 3);
-        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenu(), PaymentMethod.CARD))
+        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenus(), PaymentMethod.CARD))
                 .isEqualTo(16000 * 2 + 3000);
     }
 
     @Test
     @DisplayName("현금결제 5% 할인 추가")
     void discountCash() {
-        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenu(), PaymentMethod.CASH))
+        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenus(), PaymentMethod.CASH))
                 .isEqualTo(16000 * 2 + 3000 * 0.95);
     }
 
@@ -38,7 +38,7 @@ public class PaymentTest {
     @DisplayName("10개 이상 구매시 10000원 할인")
     void saleWhenBuyMoreTen() {
         orderedMenus.order(MenuRepository.menus().get(2), 10);
-        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenu(), PaymentMethod.CARD))
+        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenus(), PaymentMethod.CARD))
                 .isEqualTo(16000 * 12 + 3000 - 10000);
     }
 
@@ -47,7 +47,7 @@ public class PaymentTest {
     void beverageTenTest() {
         OrderedMenus orderedBeverageMenus = new OrderedMenus();
         orderedBeverageMenus.order(MenuRepository.menus().get(6), 12);
-        assertThat(Payment.calculatePay(orderedBeverageMenus.getOrderedMenu(), PaymentMethod.CARD)).isEqualTo(1000 * 12);
+        assertThat(Payment.calculatePay(orderedBeverageMenus.getOrderedMenus(), PaymentMethod.CARD)).isEqualTo(1000 * 12);
 
     }
 
@@ -55,7 +55,7 @@ public class PaymentTest {
     @DisplayName("현금할인 복리확인")
     void cashAndTen() {
         orderedMenus.order(MenuRepository.menus().get(2), 10);
-        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenu(), PaymentMethod.CASH))
+        assertThat(Payment.calculatePay(orderedMenus.getOrderedMenus(), PaymentMethod.CASH))
                 .isEqualTo((16000 * 12 + 3000 - 10000) * 0.95);
     }
 }
