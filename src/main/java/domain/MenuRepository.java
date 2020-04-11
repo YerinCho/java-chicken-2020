@@ -29,7 +29,7 @@ public class MenuRepository {
     }
 
     public static int changeMenuNumber(int input) {
-        if (input <= 6) {
+        if (input <= 6 && input > 0) {
             return input - 1;
         }
         if (input == 21) {
