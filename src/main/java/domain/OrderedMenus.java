@@ -23,4 +23,8 @@ public class OrderedMenus {
     public Map<Menu, OrderedMenu> getOrderedMenus() {
         return Collections.unmodifiableMap(orderedMenus);
     }
+
+    public void clearOrder() {
+        orderedMenus.clear();
+    }
 }

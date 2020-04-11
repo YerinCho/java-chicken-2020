@@ -33,9 +33,14 @@ public class Controller {
 
     private static void pay() {
         int tableNumber = selectTable();
-        OutputView.printPayInformation(tableNumber, tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber))));
-
+        OrderedMenus orderedMenus = tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber)));
+        OutputView.printPayInformation(tableNumber, orderedMenus);
+        PaymentMethod paymentMethod = PaymentMethod.getPaymentMethodByNumber(selectInputPaymentMethod());
+        double money = Payment.calculatePay(orderedMenus.getOrderedMenus(), paymentMethod);
+        OutputView.printPayMoney(money);
+        orderedMenus.clearOrder();
     }
+
 
     private static void buyMenu() {
         int tableNumber = selectTable();
@@ -49,6 +54,17 @@ public class Controller {
         tableNumber = TableRepository.changeTableNumber(tableNumber);
         int menuNumber = MenuRepository.changeMenuNumber(menuAndNumber.get(0));
         tableOrderedMenus.get(tables.get(tableNumber)).order(menus.get(menuNumber), menuAndNumber.get(1));
+    }
+
+    private static int selectInputPaymentMethod() {
+        int paymentMethod;
+        try {
+            paymentMethod = StringUtil.toInteger(InputView.inputPaymentMethod());
+        } catch (Exception e) {
+            OutputView.printError(e);
+            paymentMethod = selectInputPaymentMethod();
+        }
+        return paymentMethod;
     }
 
     private static int selectNumberToBuy() {

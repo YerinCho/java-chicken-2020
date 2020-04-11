@@ -34,5 +34,12 @@ public class OrderedMenusTest {
         orderedMenus.order(MenuRepository.menus().get(2), 1);
         assertThat(orderedMenus.getOrderedMenus().size()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("내역삭제")
+    void clearOrder() {
+        orderedMenus.clearOrder();
+        assertThat(orderedMenus.getOrderedMenus().size()).isEqualTo(0);
+    }
 }
 

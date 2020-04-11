@@ -25,7 +25,7 @@ public class InputView {
         return scanner.nextLine().trim();
     }
 
-    public static String inputPay() {
+    public static String inputPaymentMethod() {
         System.out.println("## 신용카드는 1번, 현금결제는 2번");
         return scanner.nextLine().trim();
     }
