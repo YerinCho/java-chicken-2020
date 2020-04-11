@@ -26,8 +26,8 @@ public class OrderedMenuTest {
 
     @Test
     @DisplayName("추가주문시 수량 증가 확인")
-    void orderMore(){
-        OrderedMenu orderedMenu = new OrderedMenu(MenuRepository.menus().get(1),1);
+    void orderMore() {
+        OrderedMenu orderedMenu = new OrderedMenu(MenuRepository.menus().get(1), 1);
         orderedMenu.orderMore(4);
         assertThat(orderedMenu.getNumber()).isEqualTo(5);
     }

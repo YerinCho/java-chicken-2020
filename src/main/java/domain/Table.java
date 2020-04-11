@@ -11,10 +11,6 @@ public class Table {
         return this.number == number;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     @Override
     public String toString() {
         return Integer.toString(number);
