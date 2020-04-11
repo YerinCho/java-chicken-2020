@@ -54,29 +54,25 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printPayInformation(int tablaNumber, OrderedMenus orderedMenus) {
+    public static void printPayInformation(final int tablaNumber, final OrderedMenus orderedMenus) {
         System.out.println("## 주문 내역");
         System.out.println("메뉴 수량 금액");
         OutputView.printOrderList(orderedMenus);
         System.out.printf("## %d번 테이블의 결제를 진행합니다.\n", tablaNumber);
     }
 
-    private static void printOrderList(OrderedMenus table) {
+    private static void printOrderList(final OrderedMenus table) {
         for (Map.Entry<Menu, OrderedMenu> orderedMenu : table.getOrderedMenus().entrySet()) {
             System.out.println(orderedMenu.getKey().getName() + " " + orderedMenu.getValue().getNumber() + " " + orderedMenu.getKey().getPrice());
         }
     }
 
-    public static void printPayMoney(double money) {
+    public static void printPayMoney(final double money) {
         System.out.println("## 최종 결제할 금액");
         System.out.println((int) money + "원");
     }
 
-    public static void printTableNumberErrorMessage() {
-        System.out.println("테이블 번호 입력이 잘못되었습니다.");
-    }
-
-    public static void printError(Exception e) {
+    public static void printError(final Exception e) {
         System.out.println(e.getMessage());
     }
 }
