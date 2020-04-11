@@ -37,17 +37,22 @@ public class Controller {
         try {
             int tableNumber = selectTable();
             checkTableOrdered(TableRepository.changeTableNumber(tableNumber));
-            OrderedMenus orderedMenus = tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber)));
-            OutputView.printPayInformation(tableNumber, orderedMenus);
-            PaymentMethod paymentMethod = PaymentMethod.getPaymentMethodByNumber(selectInputPaymentMethod());
-            double money = Payment.calculatePay(orderedMenus.getOrderedMenus(), paymentMethod);
-            OutputView.printPayMoney(money);
+            OrderedMenus orderedMenus = payTable(tableNumber);
             clear(tableNumber, orderedMenus);
         } catch (IllegalArgumentException e) {
             OutputView.printPaymentMethodErrorMessage();
         } catch (UnsupportedOperationException e) {
             OutputView.printError(e);
         }
+    }
+
+    private static OrderedMenus payTable(int tableNumber) {
+        OrderedMenus orderedMenus = tableOrderedMenus.get(tables.get(TableRepository.changeTableNumber(tableNumber)));
+        OutputView.printPayInformation(tableNumber, orderedMenus);
+        PaymentMethod paymentMethod = PaymentMethod.getPaymentMethodByNumber(selectInputPaymentMethod());
+        double money = Payment.calculatePay(orderedMenus.getOrderedMenus(), paymentMethod);
+        OutputView.printPayMoney(money);
+        return orderedMenus;
     }
 
     private static void checkTableOrdered(int changeTableNumber) {
