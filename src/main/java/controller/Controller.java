@@ -6,6 +6,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class Controller {
     private static final List<Table> tables = TableRepository.tables();
     private static Map<Table, OrderedMenus> tableOrderedMenus = TableRepository.tableOrder();
     private static final List<Menu> menus = MenuRepository.menus();
+    private static final List<Boolean> isOrder = new ArrayList<>(Arrays.asList(false, false, false, false, false, false));
 
     public static boolean run() {
         int mainNumber = selectMain();
@@ -39,6 +41,7 @@ public class Controller {
         double money = Payment.calculatePay(orderedMenus.getOrderedMenus(), paymentMethod);
         OutputView.printPayMoney(money);
         orderedMenus.clearOrder();
+        isOrder.set(TableRepository.changeTableNumber(tableNumber), false);
     }
 
 
@@ -55,6 +58,7 @@ public class Controller {
         try {
             int menuNumber = MenuRepository.changeMenuNumber(menuAndNumber.get(0));
             tableOrderedMenus.get(tables.get(tableNumber)).order(menus.get(menuNumber), menuAndNumber.get(1));
+            isOrder.set(tableNumber, true);
         } catch (Exception e) {
             OutputView.printError(e);
         }
@@ -109,7 +113,7 @@ public class Controller {
     private static int selectTable() {
         int tableNumber;
         try {
-            OutputView.printTables(tables);
+            OutputView.printTables(tables, isOrder);
             tableNumber = StringUtil.toInteger(InputView.inputTableNumber());
             TableRepository.validateTableNumber(tableNumber);
         } catch (Exception e) {

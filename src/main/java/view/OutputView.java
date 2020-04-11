@@ -26,12 +26,27 @@ public class OutputView {
         System.out.println("메뉴입력이 유효하지 않습니다.");
     }
 
-    public static void printTables(final List<Table> tables) {
+    public static void printTables(final List<Table> tables, List<Boolean> isOrder) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
-        printLine(TOP_LINE, size);
+        printLine(size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printBottomLine(size, isOrder);
+    }
+
+    private static void printBottomLine(int count, List<Boolean> isOrder) {
+        for (int index = 0; index < count; index++) {
+            printBottomLineByOrder(isOrder, index);
+        }
+        System.out.println();
+    }
+
+    private static void printBottomLineByOrder(List<Boolean> isOrder, int index) {
+        if (isOrder.get(index)) {
+            System.out.print(ORDERED_LINE);
+            return;
+        }
+        System.out.print(BOTTOM_LINE);
     }
 
     public static void printMenus(final List<Menu> menus) {
@@ -40,9 +55,9 @@ public class OutputView {
         }
     }
 
-    private static void printLine(final String line, final int count) {
+    private static void printLine(final int count) {
         for (int index = 0; index < count; index++) {
-            System.out.print(line);
+            System.out.print(TOP_LINE);
         }
         System.out.println();
     }
