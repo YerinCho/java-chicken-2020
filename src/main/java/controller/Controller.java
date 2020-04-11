@@ -52,8 +52,12 @@ public class Controller {
 
     private static void addMenu(int tableNumber, List<Integer> menuAndNumber) {
         tableNumber = TableRepository.changeTableNumber(tableNumber);
-        int menuNumber = MenuRepository.changeMenuNumber(menuAndNumber.get(0));
-        tableOrderedMenus.get(tables.get(tableNumber)).order(menus.get(menuNumber), menuAndNumber.get(1));
+        try {
+            int menuNumber = MenuRepository.changeMenuNumber(menuAndNumber.get(0));
+            tableOrderedMenus.get(tables.get(tableNumber)).order(menus.get(menuNumber), menuAndNumber.get(1));
+        } catch (Exception e) {
+            OutputView.printError(e);
+        }
     }
 
     private static int selectInputPaymentMethod() {
@@ -72,6 +76,7 @@ public class Controller {
         try {
             numberToBuy = StringUtil.toInteger(InputView.inputNumberToBuyNumber());
         } catch (Exception e) {
+            OutputView.printError(e);
             numberToBuy = selectNumberToBuy();
         }
         return numberToBuy;
